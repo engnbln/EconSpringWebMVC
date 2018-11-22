@@ -1,0 +1,72 @@
+<web-app id="WebApp_ID" version="3.1"
+	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee 
+	http://java.sun.com/xml/ns/j2ee/web-app_3_1.xsd">
+
+	<display-name>Haushaltsbuches Application</display-name>
+
+	<!-- Add Support for Spring -->
+	<listener>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
+	<listener>
+		<listener-class>
+			org.springframework.web.context.request.RequestContextListener
+		</listener-class>
+	</listener>
+
+	<!-- Change to "Production" when you are ready to deploy -->
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Development</param-value>
+	</context-param>
+
+
+	<!-- Welcome page -->
+	<welcome-file-list>
+		<welcome-file>homePage.jsf</welcome-file>
+	</welcome-file-list>
+
+	<!-- JSF Mapping -->
+	<servlet>
+		<servlet-name>facesServlet</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>facesServlet</servlet-name>
+		<url-pattern>/faces/*</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>facesServlet</servlet-name>
+		<url-pattern>*.jsf</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>facesServlet</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>
+	
+	    <servlet>
+        <servlet-name>mvc</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>2</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mvc</servlet-name>
+        <url-pattern>/api/*</url-pattern>
+    </servlet-mapping>
+      
+    <listener> 
+       <listener-class>
+           org.springframework.web.context.ContextLoaderListener
+       </listener-class>
+   </listener>
+   <listener>
+      <listener-class>
+         org.springframework.web.context.request.RequestContextListener
+      </listener-class>
+   </listener>
+
+</web-app>

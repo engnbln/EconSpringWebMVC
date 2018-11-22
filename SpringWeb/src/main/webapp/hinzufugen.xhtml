@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+<h:head>
+	<title>HaushaltsBuches Application</title>
+</h:head>
+
+<h:body>
+
+	<h:form id="hinzufugen">
+		<h3>Ein- oder Auszahlung</h3>
+		<table id="table">
+			<tr>
+				<td><h:outputLabel for="type" value="Type Auswahlen:" /></td>
+
+				<td><h:selectOneMenu id="type"
+						value="#{hausHaltsBuchBean.type}" required="true"
+						requiredMessage="Type ist erforderlich.">
+						<f:selectItem itemLabel="Type Auswahlen" itemValue=""
+							noSelectionOption="true" />
+						<f:selectItems value="#{hausHaltsBuchBean.types}" />
+						<f:ajax render="kategorie" />
+					</h:selectOneMenu></td>
+			</tr>
+			<tr>
+
+				<td><h:outputLabel for="betrag" value="Betrag :" /></td>
+				<td><h:inputText id="betrag"
+						converterMessage="Betrag : Bitte geben Sie nur Ziffern ein."
+						value="#{hausHaltsBuchBean.betrag}" required="true"
+						requiredMessage="Betrag ist erforderlich." /></td>
+			</tr>
+			<tr>
+
+				<td><h:outputLabel for="kategorie" value="Kategorie :" /></td>
+				<td><h:inputText id="kategorie" converterMessage="Kategorie : Bitte geben Sie nur text ein."
+						value="#{hausHaltsBuchBean.kategorie}" /></td>
+			</tr>
+			<tr>
+
+				<td><h:outputLabel for="memo" value="Memotext :" /></td>
+				<td><h:inputText id="memo" value="#{hausHaltsBuchBean.memo}" converterMessage="Memo : Bitte geben Sie nur text ein."/></td>
+			</tr>
+			<tr>
+
+				<td><h:outputLabel for="date" value="Datum :" /></td>
+				<td><h:inputText id="date" value="#{hausHaltsBuchBean.date}" converterMessage="Bitte geben Sie nur Datum (yyyy-MM-dd) ein.">
+						<f:convertDateTime pattern="yyyy-MM-dd" />
+					</h:inputText></td>
+			</tr>
+
+			<tr>
+
+				<td><h:commandButton value="Einreichen"
+						actionListener="#{hausHaltsBuchBean.hinzufugen}"
+						action="#{hausHaltsBuchBean.refresh}" /></td>
+			</tr>
+		</table>
+		
+		 <h:message for="hinzufugen:error" id="error"/>
+	</h:form>
+
+	<table>
+		<tr />
+		<tr />
+		<tr />
+		<tr>
+			<td><a href="homePage.xhtml">Zurück</a></td>
+		</tr>
+	</table>
+</h:body>
+
+</html>
